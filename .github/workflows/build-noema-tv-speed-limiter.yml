@@ -1,4 +1,4 @@
-name: Build NOEMA TV Speed Limiter
+name: Build and Release NOEMA TV Speed Limiter
 
 on:
   push:
@@ -13,7 +13,7 @@ jobs:
   android:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -38,9 +38,24 @@ jobs:
       - name: Build installable release APK
         run: gradle --no-daemon --stacktrace assembleRelease
 
-      - name: Upload APK
+      - name: Rename APK
+        if: github.event_name != 'pull_request'
+        run: cp app/build/outputs/apk/release/app-release.apk NOEMA-TV-Speed-Limiter-1.0-Final02.apk
+
+      - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
           name: noema-tv-speed-limiter-1.0-final02
           path: app/build/outputs/apk/release/app-release.apk
           if-no-files-found: error
+
+      - name: Publish GitHub Release APK
+        if: github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view v1.0-final02 >/dev/null 2>&1 || \
+            gh release create v1.0-final02 \
+              --title "NOEMA TV Speed Limiter 1.0 Final 02" \
+              --notes "Android TV bandwidth limiter with 2, 4 and 6 Mbit/s profiles, Full Speed mode, built-in diagnostics, Android 9 TCP fix, final launcher icon and TV banner. Install the APK directly on Android TV / Xiaomi TV Stick."
+          gh release upload v1.0-final02 NOEMA-TV-Speed-Limiter-1.0-Final02.apk --clobber
