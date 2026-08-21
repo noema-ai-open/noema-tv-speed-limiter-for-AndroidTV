@@ -1,11 +1,11 @@
 # NOEMA TV Speed Limiter
 
 <p align="center">
-  <img src="docs/noema-tv-speed-limiter-banner.webp" width="900" alt="NOEMA TV Speed Limiter banner">
+  <img src="app/src/main/res/drawable-nodpi/tv_banner_final.webp" width="900" alt="NOEMA TV Speed Limiter banner">
 </p>
 
 <p align="center">
-  <img src="docs/noema-speed-limiter.webp" width="180" alt="NOEMA TV Speed Limiter icon">
+  <img src="app/src/main/res/drawable-nodpi/ic_noema_final.webp" width="180" alt="NOEMA TV Speed Limiter icon">
 </p>
 
 **Bandwidth control for Android TV.** NOEMA TV Speed Limiter is a lightweight, remote-friendly Android TV app for travel, rehab, hotels, mobile hotspots and other metered connections.
@@ -33,7 +33,7 @@ The download shaper uses a shared token bucket so simultaneous connections share
 
 The easiest method is **Send Files to TV**.
 
-1. Download the latest `NOEMA-TV-Speed-Limiter` APK to your Android phone.
+1. Download the latest NOEMA TV Speed Limiter APK to your Android phone.
 2. Install **Send Files to TV** on both your phone and your Android TV / Xiaomi TV Stick.
 3. Open **Send Files to TV** on the TV and choose **Receive**.
 4. On the phone choose **Send** and select the NOEMA APK.
@@ -49,7 +49,7 @@ To restore unrestricted internet, open NOEMA and select **Full Speed Home**.
 
 ### Play Protect warning
 
-A manually installed APK can trigger a Play Protect warning because it did not come from Google Play. Only install APKs obtained from this project's GitHub Release page or builds you created yourself from the source code. There is no need to disable Play Protect globally.
+A manually installed APK can trigger a Play Protect warning because it did not come from Google Play. Only install APKs obtained from this repository, its GitHub Actions build artifacts, an official project release, or a build you created yourself from the source code. There is no need to disable Play Protect globally.
 
 ## Built-in Diagnostics
 
@@ -83,6 +83,26 @@ NOEMA has no account system, no analytics and no remote telemetry. The app does 
 ### Android 9 fix
 
 During development, Android 9 returned `VpnService.protect(TCP) returned false` when an outbound TCP socket was protected before it had a usable socket/file descriptor. The final path creates the outbound TCP socket on the physical network first and then protects it from the VPN loop before connecting.
+
+## Build from source
+
+Requirements:
+
+- Java 17
+- Android SDK platform 37.0 and Build Tools 37.0.0
+- Gradle 9.4.1
+
+From the repository root:
+
+```bash
+gradle --no-daemon assembleRelease
+```
+
+The APK is generated at:
+
+`app/build/outputs/apk/release/app-release.apk`
+
+A GitHub Actions workflow is included and builds the APK automatically on pushes and pull requests to `main`.
 
 ## Open-source component
 
