@@ -10,7 +10,15 @@
 
 **Bandwidth control for Android TV.** NOEMA TV Speed Limiter is a lightweight, remote-friendly Android TV app for travel, rehab, hotels, mobile hotspots and other metered connections.
 
-It provides four simple profiles:
+## Download APK
+
+**[Download NOEMA TV Speed Limiter 1.0 Final 02 APK](https://github.com/noema-ai-open/noema-tv-speed-limiter-for-AndroidTV/releases/download/v1.0-final02/NOEMA-TV-Speed-Limiter-1.0-Final02.apk)**
+
+Release page: https://github.com/noema-ai-open/noema-tv-speed-limiter-for-AndroidTV/releases/tag/v1.0-final02
+
+The APK is the installable Android TV app. The GitHub `Source code (zip)` download is only the project source and is not the app installer.
+
+## Profiles
 
 - **2 Mbit/s Saver** — maximum data saving
 - **4 Mbit/s Balanced** — everyday streaming
@@ -33,10 +41,10 @@ The download shaper uses a shared token bucket so simultaneous connections share
 
 The easiest method is **Send Files to TV**.
 
-1. Download the latest NOEMA TV Speed Limiter APK to your Android phone.
+1. Download the APK from the link above to your Android phone.
 2. Install **Send Files to TV** on both your phone and your Android TV / Xiaomi TV Stick.
 3. Open **Send Files to TV** on the TV and choose **Receive**.
-4. On the phone choose **Send** and select the NOEMA APK.
+4. On the phone choose **Send** and select `NOEMA-TV-Speed-Limiter-1.0-Final02.apk`.
 5. Select your TV / Xiaomi Stick as the destination.
 6. On the TV, open the received `.apk` file.
 7. If Android asks for permission to install unknown apps, allow it for the file-transfer or file-manager app you are using.
@@ -49,7 +57,7 @@ To restore unrestricted internet, open NOEMA and select **Full Speed Home**.
 
 ### Play Protect warning
 
-A manually installed APK can trigger a Play Protect warning because it did not come from Google Play. Only install APKs obtained from this repository, its GitHub Actions build artifacts, an official project release, or a build you created yourself from the source code. There is no need to disable Play Protect globally.
+A manually installed APK can trigger a Play Protect warning because it did not come from Google Play. Only install APKs obtained from this project's GitHub Release page or a build you created yourself from the source code. There is no need to disable Play Protect globally.
 
 ## Built-in Diagnostics
 
@@ -102,7 +110,7 @@ The APK is generated at:
 
 `app/build/outputs/apk/release/app-release.apk`
 
-A GitHub Actions workflow is included and builds the APK automatically on pushes and pull requests to `main`.
+The included GitHub Actions workflow builds the APK and publishes/updates the GitHub Release asset `NOEMA-TV-Speed-Limiter-1.0-Final02.apk` on `main`.
 
 ## Open-source component
 
