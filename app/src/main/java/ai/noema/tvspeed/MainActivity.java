@@ -21,6 +21,9 @@ import java.util.Locale;
 
 public final class MainActivity extends Activity {
     private static final int VPN_REQUEST = 4102;
+    private static final String PREF_VPN_DISCLOSURE_ACCEPTED = "vpn_disclosure_accepted";
+    private static final String PRIVACY_URL = "https://github.com/noema-ai-open/noema-tv-speed-limiter-for-AndroidTV/blob/main/PRIVACY.md";
+
     private int pendingMbit;
     private TextView status;
     private TextView stats;
@@ -90,18 +93,21 @@ public final class MainActivity extends Activity {
         addProfileButton(row, "Full Speed\nHome", 0);
         root.addView(row, lpMatchWrap());
 
-        Button debug = new Button(this);
-        debug.setText("Diagnostics");
-        debug.setTextSize(16);
-        debug.setAllCaps(false);
-        debug.setTextColor(Color.WHITE);
-        debug.setFocusable(true);
-        debug.setBackground(buttonBg(false));
-        debug.setOnFocusChangeListener((v, focused) -> v.setBackground(buttonBg(focused)));
+        LinearLayout secondaryRow = new LinearLayout(this);
+        secondaryRow.setOrientation(LinearLayout.HORIZONTAL);
+        secondaryRow.setGravity(Gravity.CENTER);
+
+        Button debug = secondaryButton("Diagnostics");
         debug.setOnClickListener(v -> showDiagnostics());
-        LinearLayout.LayoutParams debugLp = new LinearLayout.LayoutParams(dp(220), dp(64));
-        debugLp.topMargin = dp(22);
-        root.addView(debug, debugLp);
+        secondaryRow.addView(debug, secondaryLp());
+
+        Button privacy = secondaryButton("Privacy & VPN use");
+        privacy.setOnClickListener(v -> showPrivacyInfo());
+        secondaryRow.addView(privacy, secondaryLp());
+
+        LinearLayout.LayoutParams secondaryRowLp = lpMatchWrap();
+        secondaryRowLp.topMargin = dp(22);
+        root.addView(secondaryRow, secondaryRowLp);
 
         TextView note = text("Limits aggregate download traffic on this device. Upload remains unrestricted.", 14, false);
         note.setTextColor(Color.rgb(130, 145, 160));
@@ -135,6 +141,29 @@ public final class MainActivity extends Activity {
         row.addView(b, lp);
     }
 
+    private Button secondaryButton(String label) {
+        Button b = new Button(this);
+        b.setText(label);
+        b.setTextSize(16);
+        b.setAllCaps(false);
+        b.setTextColor(Color.WHITE);
+        b.setFocusable(true);
+        b.setFocusableInTouchMode(true);
+        b.setBackground(buttonBg(false));
+        b.setOnFocusChangeListener((v, focused) -> {
+            v.setBackground(buttonBg(focused));
+            v.setScaleX(focused ? 1.04f : 1.0f);
+            v.setScaleY(focused ? 1.04f : 1.0f);
+        });
+        return b;
+    }
+
+    private LinearLayout.LayoutParams secondaryLp() {
+        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(dp(230), dp(64));
+        lp.setMargins(dp(8), 0, dp(8), 0);
+        return lp;
+    }
+
     private GradientDrawable buttonBg(boolean focused) {
         GradientDrawable g = new GradientDrawable();
         g.setCornerRadius(dp(14));
@@ -148,6 +177,40 @@ public final class MainActivity extends Activity {
             sendProfile(0);
             return;
         }
+
+        SharedPreferences prefs = getSharedPreferences(SpeedVpnService.PREFS, MODE_PRIVATE);
+        if (!prefs.getBoolean(PREF_VPN_DISCLOSURE_ACCEPTED, false)) {
+            pendingMbit = mbit;
+            showVpnDisclosure();
+            return;
+        }
+
+        prepareVpn(mbit);
+    }
+
+    private void showVpnDisclosure() {
+        final String message =
+                "NOEMA uses Android VpnService only to create a local traffic path on this TV so the selected download speed limit can be applied.\n\n" +
+                "Traffic is routed on this device through a local TUN and local SOCKS relay. NOEMA does not connect your traffic to a NOEMA VPN server, does not collect browsing content, and does not sell or monetize your network traffic.\n\n" +
+                "Android will show its standard VPN permission screen next. You can stop the limiter at any time by selecting Full Speed Home.";
+
+        new AlertDialog.Builder(this)
+                .setTitle("VPN disclosure")
+                .setMessage(message)
+                .setNegativeButton("Cancel", (dialog, which) -> pendingMbit = 0)
+                .setPositiveButton("Continue", (dialog, which) -> {
+                    getSharedPreferences(SpeedVpnService.PREFS, MODE_PRIVATE)
+                            .edit()
+                            .putBoolean(PREF_VPN_DISCLOSURE_ACCEPTED, true)
+                            .apply();
+                    int selected = pendingMbit;
+                    pendingMbit = 0;
+                    prepareVpn(selected);
+                })
+                .show();
+    }
+
+    private void prepareVpn(int mbit) {
         Intent prepare = VpnService.prepare(this);
         if (prepare != null) {
             pendingMbit = mbit;
@@ -160,8 +223,14 @@ public final class MainActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == VPN_REQUEST && resultCode == RESULT_OK && pendingMbit > 0) {
-            sendProfile(pendingMbit);
+        if (requestCode == VPN_REQUEST) {
+            if (resultCode == RESULT_OK && pendingMbit > 0) {
+                int selected = pendingMbit;
+                pendingMbit = 0;
+                sendProfile(selected);
+            } else {
+                pendingMbit = 0;
+            }
         }
     }
 
@@ -189,6 +258,17 @@ public final class MainActivity extends Activity {
         new AlertDialog.Builder(this)
                 .setTitle("NOEMA Diagnostics")
                 .setView(body)
+                .setPositiveButton("Close", null)
+                .show();
+    }
+
+    private void showPrivacyInfo() {
+        final String message =
+                "NOEMA processes network packets locally only to enforce the selected bandwidth limit. It has no account system, ads, analytics or remote NOEMA VPN server. Diagnostics remain on the TV.\n\n" +
+                "Privacy policy:\n" + PRIVACY_URL;
+        new AlertDialog.Builder(this)
+                .setTitle("Privacy & VPN use")
+                .setMessage(message)
                 .setPositiveButton("Close", null)
                 .show();
     }

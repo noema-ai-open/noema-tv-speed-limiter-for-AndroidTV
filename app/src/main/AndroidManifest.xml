@@ -6,16 +6,22 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
 
-    <uses-feature android:name="android.software.leanback" android:required="false" />
+    <!-- TV-only distribution. The UI is designed for D-pad/remote navigation. -->
+    <uses-feature android:name="android.software.leanback" android:required="true" />
     <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
+    <uses-feature android:name="android.hardware.faketouch" android:required="false" />
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:banner="@drawable/tv_banner_final"
         android:icon="@drawable/ic_noema_final"
         android:label="NOEMA TV Speed Limiter"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="android.software.leanback.supports_touch"
+            android:value="false" />
 
         <activity
             android:name=".MainActivity"
@@ -38,7 +44,7 @@
             </intent-filter>
             <property
                 android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
-                android:value="Local bandwidth limiter for travel and metered networks" />
+                android:value="Local on-device bandwidth limiter for metered networks; VpnService routes traffic locally through a TUN/SOCKS path to apply the selected rate limit" />
         </service>
     </application>
 </manifest>

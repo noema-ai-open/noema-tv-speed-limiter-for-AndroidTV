@@ -1,19 +1,28 @@
-name: Build and Release NOEMA TV Speed Limiter
+name: Validate NOEMA Android TV / Google Play build
 
 on:
   push:
     branches:
       - main
+      - play-store-ready
   pull_request:
     branches:
       - main
   workflow_dispatch:
 
+permissions:
+  contents: read
+
+env:
+  NOEMA_UPLOAD_KEYSTORE_B64: ${{ secrets.NOEMA_UPLOAD_KEYSTORE_B64 }}
+  NOEMA_KEYSTORE_PASSWORD: ${{ secrets.NOEMA_KEYSTORE_PASSWORD }}
+  NOEMA_KEY_ALIAS: ${{ secrets.NOEMA_KEY_ALIAS }}
+  NOEMA_KEY_PASSWORD: ${{ secrets.NOEMA_KEY_PASSWORD }}
+
 jobs:
   android:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -27,35 +36,56 @@ jobs:
       - name: Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Install Android 37.0 SDK
-        run: sdkmanager 'platforms;android-37.0' 'build-tools;37.0.0'
+      - name: Install Android SDK and NDK
+        run: |
+          sdkmanager 'platforms;android-37.0' 'build-tools;37.0.0' 'ndk;28.2.13676358'
 
       - name: Gradle 9.4.1
         uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: '9.4.1'
 
-      - name: Build installable release APK
-        run: gradle --no-daemon --stacktrace assembleRelease
+      - name: Verify Android TV home banner is 320x180
+        run: python3 tools/verify-webp-size.py app/src/main/res/drawable-xhdpi/tv_banner_final.webp 320 180
 
-      - name: Rename APK
-        if: github.event_name != 'pull_request'
-        run: cp app/build/outputs/apk/release/app-release.apk NOEMA-TV-Speed-Limiter-1.0-Final02.apk
+      - name: Configure production upload signing when secrets exist
+        if: env.NOEMA_UPLOAD_KEYSTORE_B64 != '' && env.NOEMA_KEYSTORE_PASSWORD != '' && env.NOEMA_KEY_ALIAS != '' && env.NOEMA_KEY_PASSWORD != ''
+        run: |
+          printf '%s' "$NOEMA_UPLOAD_KEYSTORE_B64" | base64 --decode > "$RUNNER_TEMP/noema-upload.jks"
+          chmod 600 "$RUNNER_TEMP/noema-upload.jks"
+          echo "NOEMA_KEYSTORE_FILE=$RUNNER_TEMP/noema-upload.jks" >> "$GITHUB_ENV"
 
-      - name: Upload build artifact
+      - name: Lint and build Android App Bundle
+        run: gradle --no-daemon --stacktrace lintRelease bundleRelease assembleDebug
+
+      - name: Verify 32/64-bit ABIs and 16 KB native alignment
+        run: |
+          READELF="$ANDROID_HOME/ndk/28.2.13676358/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-readelf"
+          bash tools/verify-aab-native.sh app/build/outputs/bundle/release/app-release.aab "$READELF"
+
+      - name: Verify production AAB signature
+        if: env.NOEMA_UPLOAD_KEYSTORE_B64 != '' && env.NOEMA_KEYSTORE_PASSWORD != '' && env.NOEMA_KEY_ALIAS != '' && env.NOEMA_KEY_PASSWORD != ''
+        run: jarsigner -verify -verbose -certs app/build/outputs/bundle/release/app-release.aab
+
+      - name: Name Play bundle
+        run: |
+          if [[ -s "$RUNNER_TEMP/noema-upload.jks" ]]; then
+            cp app/build/outputs/bundle/release/app-release.aab NOEMA-TV-Speed-Limiter-1.1.0-PLAY-SIGNED.aab
+          else
+            cp app/build/outputs/bundle/release/app-release.aab NOEMA-TV-Speed-Limiter-1.1.0-UNSIGNED.aab
+          fi
+          cp app/build/outputs/apk/debug/app-debug.apk NOEMA-TV-Speed-Limiter-1.1.0-DEBUG.apk
+
+      - name: Upload Play bundle artifact
         uses: actions/upload-artifact@v4
         with:
-          name: noema-tv-speed-limiter-1.0-final02
-          path: app/build/outputs/apk/release/app-release.apk
+          name: noema-play-bundle-1.1.0
+          path: NOEMA-TV-Speed-Limiter-1.1.0-*.aab
           if-no-files-found: error
 
-      - name: Publish GitHub Release APK
-        if: github.event_name != 'pull_request'
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          gh release view v1.0-final02 >/dev/null 2>&1 || \
-            gh release create v1.0-final02 \
-              --title "NOEMA TV Speed Limiter 1.0 Final 02" \
-              --notes "Android TV bandwidth limiter with 2, 4 and 6 Mbit/s profiles, Full Speed mode, built-in diagnostics, Android 9 TCP fix, final launcher icon and TV banner. Install the APK directly on Android TV / Xiaomi TV Stick."
-          gh release upload v1.0-final02 NOEMA-TV-Speed-Limiter-1.0-Final02.apk --clobber
+      - name: Upload sideload test APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: noema-debug-apk-1.1.0
+          path: NOEMA-TV-Speed-Limiter-1.1.0-DEBUG.apk
+          if-no-files-found: error
