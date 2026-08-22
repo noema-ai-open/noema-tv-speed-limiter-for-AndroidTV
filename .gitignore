@@ -5,3 +5,8 @@ local.properties
 .idea/
 *.iml
 .DS_Store
+
+# Production / upload signing material must never be committed.
+*.jks
+*.keystore
+keystore.properties
