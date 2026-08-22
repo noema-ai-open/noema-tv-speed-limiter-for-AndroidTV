@@ -18,7 +18,6 @@ env:
   NOEMA_KEYSTORE_PASSWORD: ${{ secrets.NOEMA_KEYSTORE_PASSWORD }}
   NOEMA_KEY_ALIAS: ${{ secrets.NOEMA_KEY_ALIAS }}
   NOEMA_KEY_PASSWORD: ${{ secrets.NOEMA_KEY_PASSWORD }}
-  NOEMA_KEYSTORE_FILE: ${{ runner.temp }}/noema-upload.jks
 
 jobs:
   android:
@@ -52,8 +51,9 @@ jobs:
       - name: Configure production upload signing when secrets exist
         if: env.NOEMA_UPLOAD_KEYSTORE_B64 != '' && env.NOEMA_KEYSTORE_PASSWORD != '' && env.NOEMA_KEY_ALIAS != '' && env.NOEMA_KEY_PASSWORD != ''
         run: |
-          printf '%s' "$NOEMA_UPLOAD_KEYSTORE_B64" | base64 --decode > "$NOEMA_KEYSTORE_FILE"
-          chmod 600 "$NOEMA_KEYSTORE_FILE"
+          printf '%s' "$NOEMA_UPLOAD_KEYSTORE_B64" | base64 --decode > "$RUNNER_TEMP/noema-upload.jks"
+          chmod 600 "$RUNNER_TEMP/noema-upload.jks"
+          echo "NOEMA_KEYSTORE_FILE=$RUNNER_TEMP/noema-upload.jks" >> "$GITHUB_ENV"
 
       - name: Lint and build Android App Bundle
         run: gradle --no-daemon --stacktrace lintRelease bundleRelease assembleDebug
@@ -69,7 +69,7 @@ jobs:
 
       - name: Name Play bundle
         run: |
-          if [[ -s "$NOEMA_KEYSTORE_FILE" ]]; then
+          if [[ -s "$RUNNER_TEMP/noema-upload.jks" ]]; then
             cp app/build/outputs/bundle/release/app-release.aab NOEMA-TV-Speed-Limiter-1.1.0-PLAY-SIGNED.aab
           else
             cp app/build/outputs/bundle/release/app-release.aab NOEMA-TV-Speed-Limiter-1.1.0-UNSIGNED.aab
