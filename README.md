@@ -10,6 +10,8 @@
 
 **Bandwidth control for Android TV.** NOEMA TV Speed Limiter is a lightweight, remote-friendly Android TV app for travel, rehab, hotels, mobile hotspots and other metered connections.
 
+> **License:** Free for personal, private and non-commercial use. Commercial use, OEM integration, white-label use, bundling, preinstallation and redistribution require a separate written license from Sandra Wöllner / NOEMA AI. See [LICENSE](LICENSE).
+
 ## Download APK
 
 **[Download NOEMA TV Speed Limiter 1.0 Final 02 APK](https://github.com/noema-ai-open/noema-tv-speed-limiter-for-AndroidTV/releases/download/v1.0-final02/NOEMA-TV-Speed-Limiter-1.0-Final02.apk)**
@@ -112,9 +114,27 @@ The APK is generated at:
 
 The included GitHub Actions workflow builds the APK and publishes/updates the GitHub Release asset `NOEMA-TV-Speed-Limiter-1.0-Final02.apk` on `main`.
 
-## Open-source component
+## Licensing
 
-NOEMA uses HEV tun2socks through `com.wgtunnel:hevtunnel`. HEV is distributed under the MIT License. Review all dependency licenses before redistributing modified builds.
+NOEMA TV Speed Limiter is **source-available, not open source**.
+
+The original NOEMA code, assets, documentation and binaries may be used free of charge for **personal, private and non-commercial use** under the [NOEMA Personal Use License 1.0](LICENSE).
+
+A separate written commercial license is required for, among other things:
+
+- OEM or firmware integration
+- white-label use
+- bundling or preinstallation with hardware or services
+- resale or paid distribution
+- commercial or institutional deployment
+- monetized redistribution
+- incorporation into another commercial product
+
+Companies may internally evaluate the software solely to decide whether to enter into a commercial licensing or cooperation agreement. Evaluation does not grant production, redistribution or deployment rights.
+
+## Third-party component
+
+NOEMA uses HEV tun2socks through `com.wgtunnel:hevtunnel`. HEV is distributed under the MIT License. Third-party components remain governed by their respective licenses; the NOEMA Personal Use License does not restrict rights granted directly by those third-party licenses.
 
 ## Support / Donations
 
