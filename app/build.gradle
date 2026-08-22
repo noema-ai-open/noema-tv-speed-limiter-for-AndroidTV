@@ -2,6 +2,13 @@ plugins {
     id 'com.android.application'
 }
 
+def releaseKeystore = System.getenv('NOEMA_KEYSTORE_FILE')
+def releaseStorePassword = System.getenv('NOEMA_KEYSTORE_PASSWORD')
+def releaseKeyAlias = System.getenv('NOEMA_KEY_ALIAS')
+def releaseKeyPassword = System.getenv('NOEMA_KEY_PASSWORD')
+def hasReleaseSigning = [releaseKeystore, releaseStorePassword, releaseKeyAlias, releaseKeyPassword]
+        .every { it != null && !it.trim().isEmpty() }
+
 android {
     namespace 'ai.noema.tvspeed'
     compileSdk {
@@ -14,14 +21,32 @@ android {
         applicationId 'ai.noema.tvspeed'
         minSdk 26
         targetSdk 35
-        versionCode 8
-        versionName '1.0-final02'
+        versionCode 9
+        versionName '1.1.0'
+
+        ndk {
+            // Google TV requires both 32-bit and 64-bit support from 2026-08-01.
+            abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+        }
+    }
+
+    signingConfigs {
+        release {
+            if (hasReleaseSigning) {
+                storeFile file(releaseKeystore)
+                storePassword releaseStorePassword
+                keyAlias releaseKeyAlias
+                keyPassword releaseKeyPassword
+            }
+        }
     }
 
     buildTypes {
         release {
             minifyEnabled false
-            signingConfig signingConfigs.debug
+            if (hasReleaseSigning) {
+                signingConfig signingConfigs.release
+            }
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
@@ -31,13 +56,21 @@ android {
         targetCompatibility JavaVersion.VERSION_17
     }
 
+    // AGP 9.x uses modern native-library packaging. Do not force legacy JNI
+    // packaging: Google TV now checks 64-bit and 16 KB page-size compatibility.
     packaging {
         jniLibs {
-            useLegacyPackaging = true
+            useLegacyPackaging = false
         }
+    }
+
+    lint {
+        abortOnError true
+        checkReleaseBuilds true
     }
 }
 
 dependencies {
+    // Current upstream HEV binding. Upstream builds all four Android ABIs with NDK r28.
     implementation 'com.wgtunnel:hevtunnel:1.0.4'
 }
