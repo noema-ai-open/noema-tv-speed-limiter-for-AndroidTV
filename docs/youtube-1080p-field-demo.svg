@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="title desc">
+  <title id="title">NOEMA real-world YouTube 1080p field demonstration</title>
+  <desc id="desc">YouTube Stats for Nerds field observation with NOEMA active: 1920 by 1080 at 30 frames per second, zero dropped frames, connection speed estimate 2694 kilobits per second, and buffer health 92.70 seconds.</desc>
+  <rect width="1200" height="520" rx="28" fill="#121212"/>
+  <rect x="36" y="34" width="1128" height="76" rx="18" fill="#252525"/>
+  <text x="66" y="84" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700" fill="#ffffff">NOEMA • Real-world YouTube field demo</text>
+  <text x="66" y="146" font-family="Arial, Helvetica, sans-serif" font-size="22" fill="#bdbdbd">Observed on Android TV with the NOEMA limiter active</text>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="54" y="184" width="250" height="122" rx="18" fill="#1e1e1e" stroke="#3a3a3a"/>
+    <text x="78" y="224" font-size="20" fill="#a9a9a9">Resolution</text>
+    <text x="78" y="272" font-size="34" font-weight="700" fill="#ffffff">1920×1080</text>
+    <rect x="322" y="184" width="250" height="122" rx="18" fill="#1e1e1e" stroke="#3a3a3a"/>
+    <text x="346" y="224" font-size="20" fill="#a9a9a9">Frame rate</text>
+    <text x="346" y="272" font-size="34" font-weight="700" fill="#ffffff">30 fps</text>
+    <rect x="590" y="184" width="250" height="122" rx="18" fill="#1e1e1e" stroke="#3a3a3a"/>
+    <text x="614" y="224" font-size="20" fill="#a9a9a9">Dropped frames</text>
+    <text x="614" y="272" font-size="34" font-weight="700" fill="#ffffff">0</text>
+    <rect x="858" y="184" width="288" height="122" rx="18" fill="#1e1e1e" stroke="#3a3a3a"/>
+    <text x="882" y="224" font-size="20" fill="#a9a9a9">Buffer health</text>
+    <text x="882" y="272" font-size="34" font-weight="700" fill="#ffffff">92.70 s</text>
+    <rect x="54" y="328" width="1092" height="116" rx="18" fill="#1e1e1e" stroke="#3a3a3a"/>
+    <text x="78" y="370" font-size="20" fill="#a9a9a9">YouTube “Stats for Nerds” connection-speed estimate</text>
+    <text x="78" y="418" font-size="34" font-weight="700" fill="#ffffff">2694 Kbps</text>
+    <text x="344" y="418" font-size="20" fill="#9e9e9e">YouTube estimate — not a direct measurement of NOEMA's configured limit</text>
+  </g>
+  <text x="54" y="486" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#8f8f8f">Field observation, 28 Aug 2026. Adaptive streaming quality can vary by content, codec, device, network and buffer state.</text>
+</svg>
