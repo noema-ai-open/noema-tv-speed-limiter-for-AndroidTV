@@ -1,7 +1,7 @@
 # NOEMA TV Speed Limiter
 
 <p align="center">
-  <img src="docs/noema-tv-main-banner.webp" width="900" alt="NOEMA TV Speed Limiter — Bandwidth control for Android TV">
+  <img src="docs/noema-tv-main-banner.jpg" width="900" alt="NOEMA TV Speed Limiter — Bandwidth control for Android TV">
 </p>
 
 <p align="center">
@@ -12,8 +12,8 @@
 <p align="center">
   <a href="https://play.google.com/apps/testing/ai.noema.tvspeed"><img src="https://img.shields.io/badge/Google%20Play-Closed%20Alpha-2ea44f?style=for-the-badge" alt="Google Play Closed Alpha"></a>
   <a href="https://play.google.com/store/apps/details?id=ai.noema.tvspeed"><img src="https://img.shields.io/badge/version-1.2.5-d4af37?style=for-the-badge" alt="Version 1.2.5"></a>
+  <a href="https://gofund.me/e133b9db8"><img src="https://img.shields.io/badge/Support-NOEMA-00b964?style=for-the-badge" alt="Support NOEMA on GoFundMe"></a>
   <img src="https://img.shields.io/badge/Android%20TV%20%7C%20Google%20TV-supported-1687d9?style=for-the-badge" alt="Android TV and Google TV">
-  <a href="https://gofund.me/e133b9db8"><img src="https://img.shields.io/badge/Support%20NOEMA-GoFundMe-02a95c?style=for-the-badge" alt="Support NOEMA on GoFundMe"></a>
 </p>
 
 NOEMA TV Speed Limiter is a lightweight, remote-control-friendly Android TV utility for mobile hotspots, travel routers, hotel connections and other metered networks.
@@ -126,11 +126,11 @@ Testing, technical feedback and device reports directly help improve compatibili
 
 ## Support NOEMA
 
-NOEMA is developed independently. Financial support helps cover development, testing, infrastructure and the ongoing work required to improve device compatibility and maintain the project.
+If NOEMA is useful to you and you would like to support continued development, hardware testing and the running costs of this independent project, you can support the project here:
 
 [**Support NOEMA on GoFundMe**](https://gofund.me/e133b9db8)
 
-Support is voluntary. Testing, technical feedback and sharing the project are equally valuable.
+Support is voluntary and has no effect on app functionality or access to the closed test.
 
 ## Public repository scope
 
@@ -143,7 +143,7 @@ It intentionally contains **no application source code and no downloadable APK**
 - **Closed Alpha:** https://play.google.com/apps/testing/ai.noema.tvspeed
 - **Google Play:** https://play.google.com/store/apps/details?id=ai.noema.tvspeed
 - **YouTube demo:** https://youtu.be/KgacHb2xi4g
-- **GoFundMe:** https://gofund.me/e133b9db8
+- **Support / GoFundMe:** https://gofund.me/e133b9db8
 - **Website:** https://noema-ai.de
 - **Support:** support@noema-ai.de
 
