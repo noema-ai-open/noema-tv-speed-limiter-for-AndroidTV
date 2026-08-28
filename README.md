@@ -1,7 +1,7 @@
 # NOEMA TV Speed Limiter
 
 <p align="center">
-  <img src="docs/noema-speed-limiter.svg" width="190" alt="NOEMA TV Speed Limiter">
+  <img src="docs/noema-tv-main-banner.webp" width="900" alt="NOEMA TV Speed Limiter — Bandwidth control for Android TV">
 </p>
 
 <p align="center">
