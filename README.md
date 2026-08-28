@@ -13,6 +13,7 @@
   <a href="https://play.google.com/apps/testing/ai.noema.tvspeed"><img src="https://img.shields.io/badge/Google%20Play-Closed%20Alpha-2ea44f?style=for-the-badge" alt="Google Play Closed Alpha"></a>
   <a href="https://play.google.com/store/apps/details?id=ai.noema.tvspeed"><img src="https://img.shields.io/badge/version-1.2.5-d4af37?style=for-the-badge" alt="Version 1.2.5"></a>
   <img src="https://img.shields.io/badge/Android%20TV%20%7C%20Google%20TV-supported-1687d9?style=for-the-badge" alt="Android TV and Google TV">
+  <a href="https://gofund.me/e133b9db8"><img src="https://img.shields.io/badge/Support%20NOEMA-GoFundMe-02a95c?style=for-the-badge" alt="Support NOEMA on GoFundMe"></a>
 </p>
 
 NOEMA TV Speed Limiter is a lightweight, remote-control-friendly Android TV utility for mobile hotspots, travel routers, hotel connections and other metered networks.
@@ -123,6 +124,14 @@ NOEMA TV Speed Limiter is an independently developed project by **Sandra Wöllne
 
 Testing, technical feedback and device reports directly help improve compatibility across the fragmented Android TV ecosystem.
 
+## Support NOEMA
+
+NOEMA is developed independently. Financial support helps cover development, testing, infrastructure and the ongoing work required to improve device compatibility and maintain the project.
+
+[**Support NOEMA on GoFundMe**](https://gofund.me/e133b9db8)
+
+Support is voluntary. Testing, technical feedback and sharing the project are equally valuable.
+
 ## Public repository scope
 
 This repository is the **public product, testing and support page for NOEMA TV Speed Limiter**.
@@ -134,6 +143,7 @@ It intentionally contains **no application source code and no downloadable APK**
 - **Closed Alpha:** https://play.google.com/apps/testing/ai.noema.tvspeed
 - **Google Play:** https://play.google.com/store/apps/details?id=ai.noema.tvspeed
 - **YouTube demo:** https://youtu.be/KgacHb2xi4g
+- **GoFundMe:** https://gofund.me/e133b9db8
 - **Website:** https://noema-ai.de
 - **Support:** support@noema-ai.de
 
