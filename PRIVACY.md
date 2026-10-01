@@ -1,6 +1,6 @@
 # Privacy Policy — NOEMA TV Speed Limiter
 
-Effective date: 23 August 2026
+Effective date: 1 October 2026
 
 NOEMA TV Speed Limiter is designed to work locally on the Android TV / Google TV device.
 
@@ -13,6 +13,10 @@ During normal use, NOEMA AI does not receive browsing history, website content, 
 ## Android VpnService
 
 NOEMA uses Android's `VpnService` API to apply the bandwidth limit locally on the TV. The app does not route traffic through a remote NOEMA VPN endpoint and is not intended to change the user's apparent country or public IP address.
+
+## DNS
+
+The app normally uses DNS servers supplied by the active physical network. If the device does not expose a DNS server, the current implementation uses Cloudflare's `1.1.1.1` resolver as a fallback. In that fallback case, DNS queries are sent to Cloudflare rather than to a NOEMA AI server.
 
 ## Local settings, statistics and diagnostics
 
