@@ -24,6 +24,8 @@ The Google Play package is `ai.noema.tvspeed`, published by NOEMA AI. Earlier ve
 
 The app does not require root access, Device Owner privileges, privileged system permissions, a modified operating system, a custom ROM, or an unlocked bootloader. It uses the standard Android VpnService API with Android's user permission dialog. It does not obtain, grant or change root privileges and does not modify Android system files or bypass Android security mechanisms.
 
+VpnService is used to make the selected device-local download limit possible. The app does not modify the code, files or settings of other apps. Their TCP/UDP traffic passes through the local relay while limiting is enabled; this changes delivery timing, not the apps themselves. Full Speed stops the local VPN path.
+
 ## Network data processed on the device
 
 The VPN path handles packets from other apps. IP addresses, transport ports, TCP/UDP connection state and hostnames supplied in SOCKS requests are processed to connect to the original destinations. Payload bytes are temporarily buffered in memory for forwarding and download rate limiting. The app does not decrypt TLS connections, inspect content for advertising or profiling, or create packet-capture files or a browsing-history database.
