@@ -22,7 +22,7 @@ The TUN and SOCKS relay run locally on the device. Traffic is not sent through a
 
 The Google Play package is `ai.noema.tvspeed`, published by NOEMA AI. Earlier versions and the TV interface use the names NOEMA TV Speed Limiter or NOEMA TV Data Limiter.
 
-The app does not require root access, Device Owner privileges, privileged system permissions, a modified operating system, a custom ROM, or an unlocked bootloader. It uses the standard Android VpnService API with Android's user permission dialog. It does not modify Android system files.
+The app does not require root access, Device Owner privileges, privileged system permissions, a modified operating system, a custom ROM, or an unlocked bootloader. It uses the standard Android VpnService API with Android's user permission dialog. It does not obtain, grant or change root privileges and does not modify Android system files or bypass Android security mechanisms.
 
 ## Network data processed on the device
 
