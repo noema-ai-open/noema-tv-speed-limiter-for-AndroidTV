@@ -1,8 +1,12 @@
 # Android TV Data Limiter — NOEMA AI
 
+**Direktlinks / Quick links:** **[Datenschutzerklärung / Privacy Policy](PRIVACY.md)** · **[Aktuelles Video / Watch video](https://youtu.be/wZ8FxHwZwEE)** · **[Support](SUPPORT.md)** · **[Google Play](https://play.google.com/store/apps/details?id=ai.noema.tvspeed)**
+
 <p align="center">
-  <img src="docs/noema-tv-main-banner.jpg" alt="Android TV Data Limiter — NOEMA AI for Android TV and Google TV" width="900">
+  <a href="https://youtu.be/wZ8FxHwZwEE"><img src="docs/android-tv-data-limiter-1.2.8-banner.jpg" alt="Android TV Data Limiter — current video preview" width="900"></a>
 </p>
+
+*Tippe auf das Bild, um das aktuelle Video zu öffnen. / Tap the image to open the current demo.*
 
 **Control download bandwidth on Android TV / Google TV when using mobile hotspots or metered connections.**
 
@@ -24,10 +28,6 @@ The **current demonstration** shows the redesigned TV interface, the Android VPN
 **[Watch on YouTube / Video ansehen](https://youtu.be/wZ8FxHwZwEE)**
 
 ## Screenshots and graphics / Bilder
-
-**App interface and TV demo:**
-
-![Android TV Data Limiter — NOEMA AI](docs/noema-tv-main-banner.jpg)
 
 **1080p streaming field observation:**
 
@@ -59,8 +59,6 @@ For support, see **[SUPPORT.md](SUPPORT.md)** or write to **support@noema-ai.de*
 ## Real-device testing
 
 Real Android TV hardware has been tested. A recorded YouTube 1080p/30fps field observation is documented below; it does not constitute a universal playback or data-saving guarantee.
-
-![1080p field test](docs/youtube-1080p-field-demo.svg)
 
 Device support varies by Android TV / Google TV implementation. The app targets Android 8.0+ (API 26+) and TV/remote navigation.
 
