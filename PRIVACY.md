@@ -1,8 +1,8 @@
-# Privacy Policy — Data Saver Android TV / NOEMA TV Data Limiter
+# Privacy Policy / Datenschutzerklärung — Android TV Data Limiter
 
 Effective date: 7 October 2026
 
-NOEMA TV Data Limiter is designed to work locally on the Android TV / Google TV device.
+Android TV Data Limiter (NOEMA AI) is designed to work locally on the Android TV / Google TV device.
 
 ## Data collection during normal use
 
