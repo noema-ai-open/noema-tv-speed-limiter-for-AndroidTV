@@ -1,4 +1,4 @@
-# Support — NOEMA TV Speed Limiter
+# Support — Android TV Data Limiter
 
 NOEMA includes built-in diagnostics so Android TV / Google TV problems can be reported without ADB.
 
@@ -24,11 +24,15 @@ If the TV has a compatible email/share app, choose **Send report**. Otherwise us
 
 **Website:** https://noema-ai.de
 
-## Closed Alpha
+## Google Play status
 
-Official test distribution is through Google Play:
+Version **1.2.8 (build 19)** was submitted for Google Play production review on 9 October 2026. It is **not yet approved**. Older store and test entries may remain visible until Google completes review.
 
-https://play.google.com/apps/testing/ai.noema.tvspeed
+Official store listing: https://play.google.com/store/apps/details?id=ai.noema.tvspeed
+
+Current product demonstration: https://youtu.be/wZ8FxHwZwEE
+
+Privacy Policy / Datenschutzerklärung: [PRIVACY.md](PRIVACY.md)
 
 ## Important
 
