@@ -1,160 +1,80 @@
-# NOEMA TV Speed Limiter
+# Android TV Data Limiter — NOEMA AI
 
 <p align="center">
-  <img src="docs/noema-tv-main-banner.jpg" width="900" alt="NOEMA TV Speed Limiter — Bandwidth control for Android TV">
+  <img src="docs/noema-tv-main-banner.jpg" alt="Android TV Data Limiter — NOEMA AI for Android TV and Google TV" width="900">
 </p>
+
+**Control download bandwidth on Android TV / Google TV when using mobile hotspots or metered connections.**
+
+**Release status (9 October 2026):** Android TV Data Limiter **1.2.8 (build 19)** was submitted for Google Play production review in 173 countries/regions. **Google approval is still pending.** The currently visible store listing may display an earlier version until Google approves the update.
 
 <p align="center">
-  <strong>Mobile-data control for Android TV and Google TV.</strong><br>
-  Stream through hotspots and metered connections without letting the TV consume bandwidth without a simple device-side limit.
+  <a href="https://play.google.com/store/apps/details?id=ai.noema.tvspeed">Google Play</a> ·
+  <a href="https://youtu.be/wZ8FxHwZwEE">Watch the current video</a> ·
+  <a href="PRIVACY.md"><strong>Privacy Policy / Datenschutzerklärung</strong></a> ·
+  <a href="SUPPORT.md">Support</a>
 </p>
 
-<p align="center">
-  <a href="https://play.google.com/apps/testing/ai.noema.tvspeed"><img src="https://img.shields.io/badge/Google%20Play-Closed%20Alpha-2ea44f?style=for-the-badge" alt="Google Play Closed Alpha"></a>
-  <a href="https://play.google.com/store/apps/details?id=ai.noema.tvspeed"><img src="https://img.shields.io/badge/version-1.2.5-d4af37?style=for-the-badge" alt="Version 1.2.5"></a>
-  <a href="https://gofund.me/e133b9db8"><img src="https://img.shields.io/badge/Support-NOEMA-00b964?style=for-the-badge" alt="Support NOEMA on GoFundMe"></a>
-  <img src="https://img.shields.io/badge/Android%20TV%20%7C%20Google%20TV-supported-1687d9?style=for-the-badge" alt="Android TV and Google TV">
-</p>
+## Video demonstration / Aktuelles Video
 
-NOEMA TV Speed Limiter is a lightweight, remote-control-friendly Android TV utility for mobile hotspots, travel routers, hotel connections and other metered networks.
+The **current demonstration** shows the redesigned TV interface, the Android VPN permission dialog and the bandwidth-limiting operation. / Das aktuelle Video zeigt die neue Oberfläche, die Android-VPN-Freigabe und den Betrieb.
 
-The application is distributed through **Google Play**. This public repository contains product information, test documentation, privacy information, support information and public media only. **It does not contain the application source code or a downloadable APK.**
+[![Watch Android TV Data Limiter in action](https://img.youtube.com/vi/wZ8FxHwZwEE/hqdefault.jpg)](https://youtu.be/wZ8FxHwZwEE)
 
-## Install / join the test
+**[Watch on YouTube / Video ansehen](https://youtu.be/wZ8FxHwZwEE)**
 
-### Google Play closed Alpha
+## Screenshots and graphics / Bilder
 
-[**Join the NOEMA TV Speed Limiter closed Alpha test**](https://play.google.com/apps/testing/ai.noema.tvspeed)
+**App interface and TV demo:**
 
-### Google Play store listing
+![Android TV Data Limiter — NOEMA AI](docs/noema-tv-main-banner.jpg)
 
-[**Open NOEMA TV Speed Limiter on Google Play**](https://play.google.com/store/apps/details?id=ai.noema.tvspeed)
+**1080p streaming field observation:**
 
-## Watch NOEMA in action
+![Android TV streaming field observation](docs/youtube-1080p-field-demo.svg)
 
-<p align="center">
-  <a href="https://youtu.be/KgacHb2xi4g">
-    <img src="https://img.youtube.com/vi/KgacHb2xi4g/hqdefault.jpg" width="720" alt="Watch the NOEMA TV Speed Limiter demo on YouTube">
-  </a>
-</p>
+## What it does / Funktionen
 
-<p align="center"><strong><a href="https://youtu.be/KgacHb2xi4g">▶ Watch the current NOEMA TV Speed Limiter demo on YouTube</a></strong></p>
+The TV remote can select one of four profiles:
 
-## What it does
-
-NOEMA gives the user four simple profiles directly on the TV:
-
-| Profile | Purpose |
+| Profile | Function |
 | --- | --- |
-| **2 Mbit/s Saver** | Maximum data saving |
-| **4 Mbit/s Balanced** | Everyday streaming |
-| **6 Mbit/s Comfort** | More quality and headroom |
-| **Full Speed Home** | Removes the limiter |
+| 2 Mbit/s Saver | Target download bandwidth limit of 2 Mbit/s |
+| 4 Mbit/s Balanced | Target download bandwidth limit of 4 Mbit/s |
+| 6 Mbit/s Comfort | Target download bandwidth limit of 6 Mbit/s |
+| Full Speed Home | Stops the local limiter / VPN |
 
-The aim is deliberately simple: allow streaming services to adapt to a defined bandwidth budget instead of letting the TV consume mobile data without an easy device-side limit.
+The displayed 2 / 4 / 6 Mbit/s values are **target download limits, not guaranteed measured transfer speeds or guaranteed data savings**. Actual streaming and buffering behavior depends on the device, service and network.
 
-## Current version — 1.2.5
+The app provides live transfer information, locally stored session statistics, diagnostics and an optional, user-initiated support-report workflow. It is operated with the TV remote and does not require root.
 
-The current Google Play test build includes:
+## Privacy / Datenschutz
 
-- selectable 2 / 4 / 6 Mbit/s profiles
-- live download-throughput display
-- persistent local usage statistics
-- recent-session history
-- recovery after Wi-Fi/router reconnects
-- built-in diagnostics for TV-side troubleshooting
-- an in-app **Report problem** function
-- remote-control-friendly Android TV interface
-- Android TV / Google TV App Bundle distribution through Google Play
-- no root requirement
+**[Read the full privacy policy / Datenschutzerklärung öffnen](PRIVACY.md)**
 
-## Real-world streaming field test
+The app uses Android `VpnService` for an **on-device** bandwidth-limiting path. It is not a geographic VPN, does not operate a NOEMA remote VPN server and does not automatically upload usage statistics or diagnostics. More precise details, including local traffic handling, DNS fallback, retention and optional support reports, are in **[PRIVACY.md](PRIVACY.md)**.
 
-A later Android TV field observation showed YouTube running at **1920×1080 @ 30 fps with 0 dropped frames** while NOEMA was active. YouTube's own Stats for Nerds overlay reported a **92.70 s buffer** and a **2694 Kbps connection-speed estimate** during that observation.
+For support, see **[SUPPORT.md](SUPPORT.md)** or write to **support@noema-ai.de**. Do not send passwords or access keys.
 
-<p align="center">
-  <img src="docs/youtube-1080p-field-demo.svg" width="900" alt="NOEMA YouTube 1080p field demonstration">
-</p>
+## Real-device testing
 
-The YouTube connection-speed value is an estimate reported by YouTube and is **not** a direct measurement of the configured NOEMA limiter value. Adaptive streaming quality can vary with content, codec, device, network conditions and existing buffer state.
+Real Android TV hardware has been tested. A recorded YouTube 1080p/30fps field observation is documented below; it does not constitute a universal playback or data-saving guarantee.
 
-## Privacy by design
+![1080p field test](docs/youtube-1080p-field-demo.svg)
 
-NOEMA is designed to work locally on the TV.
+Device support varies by Android TV / Google TV implementation. The app targets Android 8.0+ (API 26+) and TV/remote navigation.
 
-- no NOEMA account
-- no advertising
-- no analytics
-- no automatic remote telemetry
-- no NOEMA-operated remote VPN server
-- usage statistics remain local unless the user explicitly chooses to share a support report
+## Official installation and project information
 
-See [PRIVACY.md](PRIVACY.md) for the public privacy information.
-
-## Compatibility
-
-Current target:
-
-- Android TV / Google TV
-- Android 8.0+ / API 26+
-
-Real-device testing has already been performed on Xiaomi Android TV hardware. Broader hardware testing is ongoing because Android TV implementations vary substantially between manufacturers and Android versions.
-
-## Testers wanted
-
-NOEMA is currently in closed Alpha testing. Feedback from real Android TV and Google TV hardware is particularly useful.
-
-Helpful reports include:
-
-- device manufacturer and model
-- Android / Google TV version
-- streaming service used
-- selected NOEMA profile
-- whether playback starts normally
-- buffering or quality changes
-- Wi-Fi reconnect behavior
-- remote-control navigation issues
-- crashes or VPN permission problems
-
-See [TESTING.md](TESTING.md) for the public test checklist. Support reports can also be prepared from inside the app; see [SUPPORT.md](SUPPORT.md).
-
-## Independent project
-
-NOEMA TV Speed Limiter is an independently developed project by **Sandra Wöllner / NOEMA AI**. The project grew out of a practical need to reduce data consumption on Android TV when using limited or mobile internet connections.
-
-Testing, technical feedback and device reports directly help improve compatibility across the fragmented Android TV ecosystem.
-
-## Support NOEMA
-
-If NOEMA is useful to you and you would like to support continued development, hardware testing and the running costs of this independent project, you can support the project here:
-
-[**Support NOEMA on GoFundMe**](https://gofund.me/e133b9db8)
-
-Support is voluntary and has no effect on app functionality or access to the closed test.
-
-## Public repository scope
-
-This repository is the **public product, testing and support page for NOEMA TV Speed Limiter**.
-
-It intentionally contains **no application source code and no downloadable APK**. The application source and development infrastructure are maintained privately. Official test and release distribution is handled through Google Play.
-
-## Links
-
-- **Closed Alpha:** https://play.google.com/apps/testing/ai.noema.tvspeed
 - **Google Play:** https://play.google.com/store/apps/details?id=ai.noema.tvspeed
-- **YouTube demo:** https://youtu.be/KgacHb2xi4g
-- **Support / GoFundMe:** https://gofund.me/e133b9db8
+- **Current video:** https://youtu.be/wZ8FxHwZwEE
+- **Privacy Policy:** [PRIVACY.md](PRIVACY.md)
+- **Support:** [SUPPORT.md](SUPPORT.md)
+- **Testing notes:** [TESTING.md](TESTING.md)
+- **Release history:** [CHANGELOG.md](CHANGELOG.md)
 - **Website:** https://noema-ai.de
-- **Support:** support@noema-ai.de
+- **Contact:** support@noema-ai.de
 
-## Project status
-
-NOEMA TV Speed Limiter is under active development and compatibility testing.
-
-Current public test version: **1.2.5**
-
-See [CHANGELOG.md](CHANGELOG.md) for the public release notes.
-
----
+This is the **public information and documentation repository**, not the private source-code repository. It contains **no application source code, upload keys or downloadable APK**. Official distribution is via Google Play.
 
 © 2026 Sandra Wöllner / NOEMA AI. All rights reserved.
