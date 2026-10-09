@@ -1,8 +1,19 @@
-# Public Changelog — NOEMA TV Speed Limiter
+# Public Changelog — Android TV Data Limiter
 
-## 1.2.5 — current closed Alpha
+## 1.2.8 (build 19) — submitted for Google Play production review, 9 October 2026
 
-Current public test build distributed through Google Play.
+The signed production App Bundle was accepted for submission to Google Play for the existing 173 countries/regions. **The review is pending; the release is not yet approved or publicly rolled out.**
+
+- Updated Android TV interface and brand name
+- 2 / 4 / 6 Mbit/s target download limits and Full Speed mode
+- Updated TV banner, launcher graphics, demo video and store listing
+- Updated privacy/VpnService disclosure and support materials
+
+Current demonstration: https://youtu.be/wZ8FxHwZwEE
+
+## 1.2.5 — earlier closed Alpha
+
+Earlier public test build distributed through Google Play.
 
 Highlights:
 
